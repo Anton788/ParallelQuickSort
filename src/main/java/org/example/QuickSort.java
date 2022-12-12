@@ -5,12 +5,15 @@ public class QuickSort {
         int pivot = array[(begin + end) / 2];
         int left = begin;
         int right = end;
-        while (left < right){
+        while (true){
             if (array[left] < pivot){
                 ++left;
             } else if (array[right] > pivot) {
                 --right;
             } else {
+                if (left >= right) {
+                    break;
+                }
                 int tmp = array[right];
                 array[right] = array[left];
                 array[left] = tmp;

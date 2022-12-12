@@ -27,12 +27,15 @@ public class ParallelQuickSort {
             int pivot = array[(begin + end) / 2];
             int left = begin;
             int right = end;
-            while (left < right){
+            while (true){
                 if (array[left] < pivot){
                     ++left;
                 } else if (array[right] > pivot) {
                     --right;
                 } else {
+                    if (left >= right){
+                        break;
+                    }
                     int tmp = array[right];
                     array[right] = array[left];
                     array[left] = tmp;
@@ -48,7 +51,7 @@ public class ParallelQuickSort {
             if(right_border <= left_border) return;
             if ((right_border - left_border) > singleBlock) {
                 int j = partition(array, left_border, right_border);
-                invokeAll(new Sorting(array, left_border, j - 1), new Sorting(array, j + 1, right_border));
+                invokeAll(new Sorting(array, left_border, j), new Sorting(array, j + 1, right_border));
             }else{
                 quickSort(array, left_border, right_border);
             }
