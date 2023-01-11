@@ -65,7 +65,7 @@ parlay::sequence<int> parallel_bfs(Graph &graph) {
                 neighbours,
                 [&] (int node) {
                     bool expected = false;
-                    return visited[node].compare_exchange_strong(expected, true) && !visited[node];
+                    return visited[node].compare_exchange_strong(expected, true);
                 }
         );
     }
